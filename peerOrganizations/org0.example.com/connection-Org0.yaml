@@ -1,0 +1,31 @@
+name: 'bdk-fabric-network-Org0'
+version: '1.0.0'
+client:
+  organization: 'Org0'
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org0:
+    mspid: 'Org0'
+    peers:
+      - 'peer0.org0.example.com'
+      - 'peer1.org0.example.com'
+    certificateAuthorities: []
+peers:
+  peer0.org0.example.com:
+    url: 'grpcs://peer0.org0.example.com:7051'
+    tlsCACerts:
+      pem: "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQacScRVlNOiBXCSUuhiPLOjAKBggqhkjOPQQDAjB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQb3JnMC5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz\nY2Eub3JnMC5leGFtcGxlLmNvbTAeFw0yNTA3MTYxOTMzMDBaFw0zNTA3MTQxOTMz\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcwLmV4YW1wbGUuY29tMR8wHQYD\nVQQDExZ0bHNjYS5vcmcwLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAEJ1s/o/oDbTJZ+Meees2E+8IHuu5IfFr67GHLJKEdm4PLesDS9jODWv+d\nBVlzPZxKZIdv49Lxqm+udPnIe/9P0KNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCBpBHYL5H2wXHaIFC06tsEp/bG9fnzdc879vKVAMttXbTAKBggqhkjOPQQD\nAgNHADBEAiA+RCfCM1s4ivfTd62c9bPeqydjWrapw4jWkaO6rh9LewIgYNzpv6yo\nACCO4z1CU97e6vTvW7PZe/vTfM48ziDDm6E=\n-----END CERTIFICATE-----\n"
+    grpcOptions:
+      ssl-target-name-override: 'peer0.org0.example.com'
+      hostnameOverride: 'peer0.org0.example.com'
+  peer1.org0.example.com:
+    url: 'grpcs://peer1.org0.example.com:7051'
+    tlsCACerts:
+      pem: "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQacScRVlNOiBXCSUuhiPLOjAKBggqhkjOPQQDAjB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQb3JnMC5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz\nY2Eub3JnMC5leGFtcGxlLmNvbTAeFw0yNTA3MTYxOTMzMDBaFw0zNTA3MTQxOTMz\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcwLmV4YW1wbGUuY29tMR8wHQYD\nVQQDExZ0bHNjYS5vcmcwLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAEJ1s/o/oDbTJZ+Meees2E+8IHuu5IfFr67GHLJKEdm4PLesDS9jODWv+d\nBVlzPZxKZIdv49Lxqm+udPnIe/9P0KNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCBpBHYL5H2wXHaIFC06tsEp/bG9fnzdc879vKVAMttXbTAKBggqhkjOPQQD\nAgNHADBEAiA+RCfCM1s4ivfTd62c9bPeqydjWrapw4jWkaO6rh9LewIgYNzpv6yo\nACCO4z1CU97e6vTvW7PZe/vTfM48ziDDm6E=\n-----END CERTIFICATE-----\n"
+    grpcOptions:
+      ssl-target-name-override: 'peer1.org0.example.com'
+      hostnameOverride: 'peer1.org0.example.com'
+certificateAuthorities: {}

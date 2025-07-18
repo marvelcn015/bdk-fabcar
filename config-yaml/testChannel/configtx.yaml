@@ -1,0 +1,74 @@
+Organizations: []
+Profiles:
+  testChannel:
+    Policies:
+      Readers:
+        Type: 'ImplicitMeta'
+        Rule: 'ANY Readers'
+      Writers:
+        Type: 'ImplicitMeta'
+        Rule: 'ANY Writers'
+      Admins:
+        Type: 'ImplicitMeta'
+        Rule: 'MAJORITY Admins'
+    Capabilities:
+      V2_0: true
+    Consortium: 'AllOrganizationsConsortium'
+    Application:
+      Organizations:
+        - Name: 'Org0'
+          ID: 'Org0'
+          MSPDir: '/tmp/peerOrganizations/org0.example.com/msp'
+          Policies:
+            Readers:
+              Type: 'Signature'
+              Rule: 'OR(''Org0.admin'', ''Org0.peer'', ''Org0.client'')'
+            Writers:
+              Type: 'Signature'
+              Rule: 'OR(''Org0.admin'', ''Org0.client'')'
+            Admins:
+              Type: 'Signature'
+              Rule: 'OR(''Org0.admin'')'
+            Endorsement:
+              Type: 'Signature'
+              Rule: 'OR(''Org0.peer'')'
+          AnchorPeers:
+            - Host: 'peer0.org0.example.com'
+              Port: 7051
+        - Name: 'Org1'
+          ID: 'Org1'
+          MSPDir: '/tmp/peerOrganizations/org1.example.com/msp'
+          Policies:
+            Readers:
+              Type: 'Signature'
+              Rule: 'OR(''Org1.admin'', ''Org1.peer'', ''Org1.client'')'
+            Writers:
+              Type: 'Signature'
+              Rule: 'OR(''Org1.admin'', ''Org1.client'')'
+            Admins:
+              Type: 'Signature'
+              Rule: 'OR(''Org1.admin'')'
+            Endorsement:
+              Type: 'Signature'
+              Rule: 'OR(''Org1.peer'')'
+          AnchorPeers:
+            - Host: 'peer0.org1.example.com'
+              Port: 7051
+      Policies:
+        Readers:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Readers'
+        Writers:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Writers'
+        Admins:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Admins'
+        LifecycleEndorsement:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Endorsement'
+        Endorsement:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Endorsement'
+      Capabilities:
+        V2_0: true

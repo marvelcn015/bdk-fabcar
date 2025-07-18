@@ -1,0 +1,112 @@
+Organizations:
+  - &ref_0
+    Name: 'Org0Orderer'
+    ID: 'Org0Orderer'
+    MSPDir: '/tmp/ordererOrganizations/orderer.org0.example.com/msp'
+    Policies:
+      Readers:
+        Type: 'Signature'
+        Rule: 'OR(''Org0Orderer.member'')'
+      Writers:
+        Type: 'Signature'
+        Rule: 'OR(''Org0Orderer.member'')'
+      Admins:
+        Type: 'Signature'
+        Rule: 'OR(''Org0Orderer.admin'')'
+    OrdererEndpoints:
+      - 'orderer0.orderer.org0.example.com:7050'
+      - 'orderer1.orderer.org0.example.com:7150'
+  - &ref_1
+    Name: 'Org0'
+    ID: 'Org0'
+    MSPDir: '/tmp/peerOrganizations/org0.example.com/msp'
+    Policies:
+      Readers:
+        Type: 'Signature'
+        Rule: 'OR(''Org0.admin'', ''Org0.peer'', ''Org0.client'')'
+      Writers:
+        Type: 'Signature'
+        Rule: 'OR(''Org0.admin'', ''Org0.client'')'
+      Admins:
+        Type: 'Signature'
+        Rule: 'OR(''Org0.admin'')'
+      Endorsement:
+        Type: 'Signature'
+        Rule: 'OR(''Org0.peer'')'
+    AnchorPeers:
+      - Host: 'peer0.org0.example.com'
+        Port: 7051
+  - &ref_2
+    Name: 'Org1'
+    ID: 'Org1'
+    MSPDir: '/tmp/peerOrganizations/org1.example.com/msp'
+    Policies:
+      Readers:
+        Type: 'Signature'
+        Rule: 'OR(''Org1.admin'', ''Org1.peer'', ''Org1.client'')'
+      Writers:
+        Type: 'Signature'
+        Rule: 'OR(''Org1.admin'', ''Org1.client'')'
+      Admins:
+        Type: 'Signature'
+        Rule: 'OR(''Org1.admin'')'
+      Endorsement:
+        Type: 'Signature'
+        Rule: 'OR(''Org1.peer'')'
+    AnchorPeers:
+      - Host: 'peer0.org1.example.com'
+        Port: 7051
+Profiles:
+  bdk-fabric-networkGenesis:
+    Policies:
+      Readers:
+        Type: 'ImplicitMeta'
+        Rule: 'ANY Readers'
+      Writers:
+        Type: 'ImplicitMeta'
+        Rule: 'ANY Writers'
+      Admins:
+        Type: 'ImplicitMeta'
+        Rule: 'MAJORITY Admins'
+    Capabilities:
+      V2_0: true
+    Orderer:
+      OrdererType: 'etcdraft'
+      Addresses: []
+      EtcdRaft:
+        Consenters:
+          - Host: 'orderer0.orderer.org0.example.com'
+            Port: 7050
+            ClientTLSCert: '/tmp/ordererOrganizations/orderer.org0.example.com/orderers/orderer0.orderer.org0.example.com/tls/server.crt'
+            ServerTLSCert: '/tmp/ordererOrganizations/orderer.org0.example.com/orderers/orderer0.orderer.org0.example.com/tls/server.crt'
+          - Host: 'orderer1.orderer.org0.example.com'
+            Port: 7150
+            ClientTLSCert: '/tmp/ordererOrganizations/orderer.org0.example.com/orderers/orderer1.orderer.org0.example.com/tls/server.crt'
+            ServerTLSCert: '/tmp/ordererOrganizations/orderer.org0.example.com/orderers/orderer1.orderer.org0.example.com/tls/server.crt'
+      BatchTimeout: '2s'
+      BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: '99 MB'
+        PreferredMaxBytes: '512 KB'
+      Organizations:
+        - *ref_0
+      Capabilities:
+        V2_0: true
+      Policies:
+        Readers:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Readers'
+        Writers:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Writers'
+        Admins:
+          Type: 'ImplicitMeta'
+          Rule: 'MAJORITY Admins'
+        BlockValidation:
+          Type: 'ImplicitMeta'
+          Rule: 'ANY Writers'
+    Consortiums:
+      AllOrganizationsConsortium:
+        Organizations:
+          - *ref_1
+          - *ref_2
